@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import importlib
 import base64
 from googletrans import Translator
 from PIL import Image
@@ -9,7 +10,43 @@ def run():
    
     translator = Translator()
 
-   
+    def get_base64_of_bin_file(bin_file):
+        with open(bin_file, 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
+
+    
+    gif_path = "back3.gif"  
+
+    
+    base64_gif = get_base64_of_bin_file(gif_path)
+
+    
+    page_bg = f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background-image: url("data:image/gif;base64,{base64_gif}");
+        background-size: cover;
+        background-position: center;
+    }}
+
+    .black-text {{
+        color: black;
+        margin-left: 480px;
+    }}
+
+    .custom-heading {{
+        color: black;
+        margin-left: 480px;
+        font-size: 35px;
+    }}
+    </style>
+    """
+
+    
+    st.markdown(page_bg, unsafe_allow_html=True)
+
+
     def translate_text(text, dest_language):
         language_codes = {
             'English': 'en',
@@ -73,14 +110,14 @@ def run():
 
     with col1:
         
-        st.image("marker_image0.png", caption=translate_text("Click for more information", language), use_column_width=True)  # Replace 'image1.jpg' with your actual image
+        st.image("face-scan.png", caption=translate_text("Click for more information", language), use_column_width=True)  # Replace 'image1.jpg' with your actual image
         if st.button(translate_text("Go to Link 1 (Scan)", language)):
             st.session_state['mode'] = 'scan'  
             st.experimental_rerun() 
 
     with col2:
         
-        st.image("marker_image1.png", caption=translate_text("Click for more information", language), use_column_width=True)  # Replace 'image2.jpg' with your actual image
+        st.image("magnifying-glass.png", caption=translate_text("Click for more information", language), use_column_width=True)  # Replace 'image2.jpg' with your actual image
         if st.button(translate_text("Go to Link 2 (Search)", language)):
             st.session_state['mode'] = 'search'  
             st.experimental_rerun()  
