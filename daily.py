@@ -1,12 +1,58 @@
 import streamlit as st
 import pandas as pd
+import importlib
+from PIL import Image
+import base64
 import matplotlib.pyplot as plt
 from googletrans import Translator
 
 def run():
-    st.title("Know Your Daily Footprint")
+    col1, col2 = st.columns([4, 1])  
+    with col1:
+        st.title("Know Your Daily Footprint")
+    
+    with col2:
+       
+        image = Image.open("footprint.png") 
+        resized_image = image.resize((100, 100)) 
+        st.image(resized_image, use_column_width=True)  
+    def get_base64_of_bin_file(bin_file):
+        with open(bin_file, 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
 
     
+    gif_path = "back5.gif"  
+
+    
+    base64_gif = get_base64_of_bin_file(gif_path)
+
+    
+    page_bg = f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background-image: url("data:image/gif;base64,{base64_gif}");
+        background-size: cover;
+        background-position: center;
+    }}
+
+    .black-text {{
+        color: black;
+        margin-left: 480px;
+    }}
+
+    .custom-heading {{
+        color: black;
+        margin-left: 480px;
+        font-size: 35px;
+    }}
+    </style>
+    """
+
+    
+    st.markdown(page_bg, unsafe_allow_html=True)
+
+
     translator = Translator()
 
     
