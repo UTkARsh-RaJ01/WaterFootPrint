@@ -6,7 +6,42 @@ from googletrans import Translator
 def run():
    
     translator = Translator()
+    
+    def get_base64_of_bin_file(bin_file):
+        with open(bin_file, 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
 
+    
+    gif_path = "back6.gif"  
+
+    
+    base64_gif = get_base64_of_bin_file(gif_path)
+
+    
+    page_bg = f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background-image: url("data:image/gif;base64,{base64_gif}");
+        background-size: cover;
+        background-position: center;
+    }}
+
+    .black-text {{
+        color: black;
+        margin-left: 480px;
+    }}
+
+    .custom-heading {{
+        color: black;
+        margin-left: 480px;
+        font-size: 35px;
+    }}
+    </style>
+    """
+
+    
+    st.markdown(page_bg, unsafe_allow_html=True)
     
     def translate_text(text, dest_language):
         language_codes = {
@@ -30,14 +65,14 @@ def run():
     
     @st.cache_data
     def load_data():
-        df = pd.read_excel('water.xlsx')  
+        df = pd.read_excel('wateer.xlsx')  
         return df
 
    
     df = load_data()
 
     
-    st.sidebar.title("Navigation")
+    ##st.sidebar.title("Navigation")
 
     language = st.sidebar.selectbox(
         'Select Language',
