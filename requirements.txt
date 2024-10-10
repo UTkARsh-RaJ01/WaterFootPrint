@@ -1,9 +1,9 @@
-streamlit==1.17.0  
-googletrans==4.0.0-rc1
-pandas==2.2.3
-numpy==1.23.5      
-matplotlib==3.7.1
-openpyxl==3.1.2
-keras==2.12.0
-Pillow==10.4.0
-tensorflow==2.12.0  
+streamlit==1.17.0         # Streamlit version
+googletrans==4.0.0-rc1    # For translation
+pandas==2.2.3             # For data manipulation
+numpy==1.23.5             # Required by many libraries
+matplotlib==3.7.1         # For plotting
+openpyxl==3.1.2           # For reading Excel files
+keras==2.12.0             # Keras for deep learning
+Pillow==10.4.0            # Image processing
+tensorflow==2.12.0        # TensorFlow for Keras backend
