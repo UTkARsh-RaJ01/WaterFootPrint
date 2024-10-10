@@ -7,3 +7,4 @@ openpyxl==3.1.5           # For reading Excel files
 keras==3.4.1             # Keras for deep learning
 pillow==10.4.0           # Image processing
 tensorflow==2.17.0      # TensorFlow for Keras backend
+h5py==3.11.0
