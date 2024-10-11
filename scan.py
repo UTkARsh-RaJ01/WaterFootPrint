@@ -50,7 +50,8 @@ def run():
     def load_models():
         model1 = load_model('model1.h5')  
         model2 = load_model('FV_1.h5') 
-        model3 = load_model('model3.h5')  
+        model3 = load_model('model3.h5', compile=False)
+
         return model1, model2, model3
 
     model1, model2, model3 = load_models()
